@@ -15,7 +15,7 @@ export default function RevealedTile({ cell, rowIndex, colIndex, handleCellClick
     return (
         <span
             key={colIndex}
-            className={`min-w-3 text-xl rounded-lg backdrop-blur-sm aspect-square flex items-center justify-center flex-1 text-center bg-opacity-5`} // Concatenate class name with color
+            className={`min-w-3 text-xl select-none rounded-lg backdrop-blur-md aspect-square flex items-center justify-center flex-1 text-center bg-opacity-5`} // Concatenate class name with color
             style={{ color: textColor, background: `${colourArray[cell.adjacentMines]}1A`}}
         >
             {cell.isMine ? <FaBomb /> : cell.adjacentMines ? cell.adjacentMines : ' '}

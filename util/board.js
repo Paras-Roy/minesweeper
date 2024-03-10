@@ -5,6 +5,8 @@ export class Board {
         this.cols = cols;
         this.mines = mines;
         this.grid = [];
+        this.isWon = false;
+        this.isLost = false;
         this.generateBoard();
         this.placeMines(0, 0);
         this.calculateAdjMines();
@@ -64,8 +66,11 @@ export class Board {
             if (this.grid[row][col].isMine) {
                 this.revealAllMines();
                 console.log("Game Loss!")
+                this.isLost = true;
             } else if(this.checkWinCondition()) {
+                this.revealAllMines();
                 console.log("Game Won!")
+                this.isWon = true;
             }
         }
     }
@@ -90,7 +95,7 @@ export class Board {
         let remainingCells = this.rows * this.cols - this.mines;
         for (let i = 0; i < this.rows; i++) {
             for (let j = 0; j < this.cols; j++) {
-                if (this.grid[i][j].isRevealed || this.grid[i][j].isFlagged) {
+                if (this.grid[i][j].isRevealed) {
                     remainingCells--;
                 }
             }

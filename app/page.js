@@ -1,5 +1,5 @@
 export default function Home() {
   return (
-    <div className="flex-1">Body</div>
+    <div className="flex-1">Minesweeper!</div>
   );
 }
