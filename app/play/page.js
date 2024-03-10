@@ -1,61 +1,17 @@
-"use client"
-import React, { useState, useEffect } from 'react';
-import { Board } from '../../util/board';
+import Game from '@/components/game/Game'
+import React from 'react'
 
 export default function Play() {
-  const [board, setBoard] = useState(null);
-
-  useEffect( () => {
-    console.log("starting game");
-    const rows = 8;
-    const cols = 8;
-    const mines = 20;
-    const newBoard = new Board(rows, cols, mines);
-    setBoard(()=>newBoard);
-  }, []);
-
-  const renderBoard = () => {
-    if (!board) return null; 
-    return board.grid.map((row, rowIndex) => (
-      <div key={rowIndex} className="flex gap-2">
-        {row.map((cell, colIndex) => (
-          <span
-            key={colIndex}
-            className="min-w-3"
-            onClick={() => handleCellClick(rowIndex, colIndex)}
-            onContextMenu={(e) => handleRightClick(e, rowIndex, colIndex)}
-          >
-           {cell.isRevealed ? cell.adjacentMines : cell.isFlagged ? 'F' : '[]'}
-          </span>
-        ))}
-      </div>
-    ));
-  };
-
-  const handleCellClick = (row, col) => {
-    if (!board) return;
-    const updatedBoard = new Board(board.rows, board.cols, board.mines);
-    updatedBoard.grid = board.grid.map(row => [...row]);
-    updatedBoard.revealCell(row, col);
-    setBoard(updatedBoard);
-  };
-
-  const handleRightClick = (e, row, col) => {
-    e.preventDefault();
-    if (!board) return; 
-    const updatedBoard = new Board(board.rows, board.cols, board.mines);
-    updatedBoard.grid = board.grid.map(row => [...row]);
-    updatedBoard.toggleFlag(row, col);
-    setBoard(updatedBoard);
-  };
-  
-  
-
   return (
-    <div className="game text-white">
-      {board && (
-        <div className="board">{renderBoard()}</div>
-      )}
+    <div className="p-2 flex-col gap-4 flex items-center max-w-[800px] w-11/12">
+       <div className='flex w-full bg-white bg-opacity-5 font-medium text-xl backdrop-blur-sm rounded-lg py-2 px-4'>
+            <div className=''>Difficulty</div>
+            <div className='flex-1 text-center'>00:01</div>
+            <div className=''>Restart</div>
+       </div>
+       <div className='flex w-full'>
+            <Game/>
+       </div>
     </div>
-  );
-};
+  )
+}

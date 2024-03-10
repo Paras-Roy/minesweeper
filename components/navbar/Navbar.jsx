@@ -16,7 +16,7 @@ export default function Navbar() {
             <IoPlay/>
         </Link>
         <Link href="/play" className="flex-1 text-xl bg-white bg-opacity-5 px-3 items-center justify-center rounded-lg hover:bg-opacity-10 hidden sm:flex">
-            New Game
+            Play
         </Link>
         <Link href="/leaderboard" className="flex-1 text-4xl bg-white bg-opacity-5 px-3 flex items-center justify-center rounded-lg py-3 hover:bg-opacity-10 sm:hidden">
             <MdLeaderboard/>
